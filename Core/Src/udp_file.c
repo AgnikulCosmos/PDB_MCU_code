@@ -23,6 +23,7 @@
 #include "lwip/tcp.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -31,7 +32,7 @@
 #define DEST_IP_ADDR1 1
 #define DEST_IP_ADDR2 1
 #define DEST_IP_ADDR3 137
- char buffer[20];
+uint8_t  buffer[5];
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -115,7 +116,7 @@ void udp_echoclient_send(void)
   */
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
-	strncpy (buffer, p->payload, p->len);
+	strncpy ((char *)buffer, p->payload, p->len);
 
   /*increment message count */
   message_count++;
