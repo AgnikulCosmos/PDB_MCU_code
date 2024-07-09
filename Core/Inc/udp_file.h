@@ -28,4 +28,11 @@
 void udp_echoclient_connect(void);
 void udp_echoclient_send(void);
 
+typedef struct{
+	uint8_t SOF;
+	uint8_t rx_buffer[32];
+	uint8_t checksum;
+}rx_struct;
+
+
 #endif /* __UDP_ECHOCLIENT_H__ */

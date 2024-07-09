@@ -24,7 +24,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
-
+#include "udp_file.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define UDP_SERVER_PORT 6969
@@ -32,16 +32,16 @@
 #define DEST_IP_ADDR1 1
 #define DEST_IP_ADDR2 1
 #define DEST_IP_ADDR3 137
-uint8_t  buffer[5];
+uint8_t  buffer[34];
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);
-
 u8_t   data[100];
 __IO uint32_t message_count = 0;
 struct udp_pcb *upcb;
-
+rx_struct data_rx_r;
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -73,6 +73,10 @@ void udp_echoclient_connect(void)
     }
   }
 }
+
+
+
+
 
 /**
   * @brief This function is called when an UDP datagrm has been received on the port UDP_PORT.
